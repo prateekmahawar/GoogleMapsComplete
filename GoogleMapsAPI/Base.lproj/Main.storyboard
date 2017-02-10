@@ -35,13 +35,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nhl-G1-I46">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Qc0-xs-o5k">
+                            <color key="tintColor" red="0.86666666670000003" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="doneBtnAction:" destination="BYZ-38-t0r" id="8O5-4F-4ni"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="Wxn-wq-YEA">
+                            <color key="tintColor" red="0.87003038200000005" green="0.33121329910000002" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="openSearchLocation:" destination="BYZ-38-t0r" id="VjE-5B-tOp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBtn" destination="Qc0-xs-o5k" id="H5O-Fz-jiD"/>
                         <outlet property="googleMapView" destination="9v4-2a-2XK" id="Jtb-tJ-7QL"/>
                     </connections>
                 </viewController>
@@ -57,8 +65,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IQJ-Mc-pdE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kMV-5J-pSj">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="YdR-Ag-ZEg"/>
                     </connections>

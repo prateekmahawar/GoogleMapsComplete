@@ -11,13 +11,16 @@ import GoogleMaps
 import GooglePlaces
 
 class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate {
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
 
     @IBOutlet weak var googleMapView: GMSMapView!
     
     var locationManager = CLLocationManager()
-    
+    var customLoc:GMSPlace?
+    var myLoc:CLLocation?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -54,7 +57,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
-        
+        self.myLoc = location
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         self.googleMapView.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
@@ -80,10 +83,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15.0)
         self.googleMapView.camera = camera
         
+        self.customLoc = place
         let position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         let customLocation = GMSMarker(position: position)
         customLocation.title = place.name
-//        customLocation.icon = UIImage(named: "ash")
+        customLocation.icon = UIImage(named: "25")
         customLocation.map = googleMapView
         
         self.dismiss(animated: true, completion: nil)
@@ -105,5 +109,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     
+    @IBAction func doneBtnAction(_ sender: Any) {
+        googleMapView.clear()
+    }
 }
 
